@@ -1,4 +1,4 @@
-# Advent of Code 2022 - day 1 part 1
+# Advent of Code 2022 - day 1 part 1 and 2
 
 
 # Add values together until you see an empty line
