@@ -9,17 +9,30 @@
 # Problem 1: recognize the empty line
 # Solution 1: A empty line is equal to the empty string (after .strip())
 
+# Open the input file for reading
 with open("input_test.txt", "r") as input_file:
-    # Claim: if it's a newline,
-    # stripped wil be equal to the empty string
-    highest_value = 0
+    elves_calories = []  # List to store total calories for each elf
     current_value = 0
+
     for line in input_file:
         stripped = line.strip()
+
+        # If the line is not empty, add its value to current_value
         if stripped != "":
-            current_value = current_value + int(stripped)
+            current_value += int(stripped)
+
+        # If the line is empty, it means we're moving to the next elf. Store current_value and reset it.
         else:
+            elves_calories.append(current_value)
             current_value = 0
-        if highest_value < current_value:
-            highest_value = current_value
-    print(highest_value)
+
+    # Make sure to add the last elf's calories if the file doesn't end with an empty line
+    if current_value != 0:
+        elves_calories.append(current_value)
+
+    # Sort the list in descending order and get the sum of the top three values
+    elves_calories.sort(reverse=True)
+    top_three_total = sum(elves_calories[:3])
+
+    print(f"Elf with most calories: {elves_calories[0]}")
+    print(f"Top three elves' total calories: {top_three_total}")
